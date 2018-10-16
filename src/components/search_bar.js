@@ -7,6 +7,7 @@ class SearchBar extends Component {
         this.state = {
             term: ''
         };
+        this.onInputChange = this.onInputChange.bind(this);
     }
 
     onInputChange (event) {
@@ -14,10 +15,19 @@ class SearchBar extends Component {
         this.setState({term: value});
     }
     render() {
-        return <input 
-        onChange={this.onInputChange} 
-        value={this.state.term }
-        />;
+        return (
+        <div className="search-bar">
+         <label htmlFor="search-input">Search Youtube</label>
+            <input
+            id="search-input"
+            name="search-bar" 
+            type="search"
+            onChange={this.onInputChange} 
+            value={this.state.term }
+            />
+            <button onClick={() => this.props.handleSearch(this.state.term)}>Search</button>
+        </div>
+        );
     }
     
 }
