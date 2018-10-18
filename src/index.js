@@ -13,16 +13,10 @@ class App extends Component {
             videos: [],
             selectedVideo: null
         };
-        this.handleSelect = this.handleSelect.bind(this);
-        this.handleSearch = this.handleSearch.bind(this);
-        YTSearch({key: API_KEY, term: 'surfboards'}, (videos) => this.setState({
-            videos,
-            selectedVideo: videos[0]
-        }));
+      this.handleSearch('surfboards');
       
     }
     handleSearch(term) {
-        
         YTSearch({key: API_KEY, term: term}, (videos) => this.setState({
             videos,
             selectedVideo: videos[0]
@@ -36,7 +30,7 @@ class App extends Component {
     render() {
         return (
             <div>
-                <SearchBar handleSearch={this.handleSearch} />
+                <SearchBar handleSearch={term => this.handleSearch(term)} />
                 <VideoDetail video={this.state.selectedVideo}/>
                 <VideoList onVideoSelect={this.handleSelect}  videos={this.state.videos}/>
             </div>
